@@ -1,0 +1,38 @@
+/* Main container for the Sudoku grid */
+.sudoku-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 40px);
+  grid-template-rows: repeat(9, 40px);
+  gap: 1px; /* Adjust the gap between cells */
+  justify-content: center; /* Center the grid horizontally */
+  margin: 20px auto; /* Center the grid within its container */
+  border: 10px solid #000; /* Dark border for the entire grid */
+  background-color: #000; /* Dark background color */
+  padding: 5px; /* Add some padding */
+}
+
+/* Individual cells in the Sudoku grid */
+.sudoku-cell {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 1.2em;
+  border: 1px solid #444; /* Darker border for cells */
+  outline: none; /* Remove the default outline on focus */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  color: #fff; /* White text color */
+  background-color: #333; /* Darker background color for cells */
+}
+
+/* Focus style for cells */
+.sudoku-cell:focus {
+  border-color: #fff; /* White border color on focus */
+}
+
+/* Highlight borders between 3x3 sections */
+.sudoku-cell:nth-child(n) {
+  border-right: 2px solid #fff; /* White right border for every cell */
+  border-bottom: 2px solid #fff;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+}
