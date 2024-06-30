@@ -21,3 +21,26 @@ body {
 main {
   padding: 20px;
 }
+
+/* App.css */
+
+.sudoku-solver {
+  position: relative;
+  margin: auto;
+  text-align: center;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #555;
+}

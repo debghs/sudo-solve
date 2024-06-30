@@ -1,14 +1,34 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './SudokuGrid.css';
 
-const SudokuGrid = ({ grid, onCellChange }) => {
+const SudokuGrid = ({ grid, onCellChange, errors }) => {
+  const cellRefs = useRef([]);
+
   const handleChange = (row, col, e) => {
     const value = e.target.value;
-    // Allow only numbers (1-9) or empty string (to clear cell)
     if (/^[1-9]?$/.test(value)) {
       onCellChange(row, col, value);
     }
-    // If the input is invalid, do nothing (prevent updating the grid state)
+  };
+
+  const handleKeyDown = (row, col, e) => {
+    if (e.key === 'ArrowLeft') {
+      if (row > 0) {
+        cellRefs.current[(row - 1) * 9 + col].focus();
+      }
+    } else if (e.key === 'ArrowRight') {
+      if (row < 8) {
+        cellRefs.current[(row + 1) * 9 + col].focus();
+      }
+    } else if (e.key === 'ArrowUp') {
+      if (col > 0) {
+        cellRefs.current[row * 9 + (col - 1)].focus();
+      }
+    } else if (e.key === 'ArrowLeft') {
+      if (col < 8) {
+        cellRefs.current[row * 9 + (col + 1)].focus();
+      }
+    }
   };
 
   return (
@@ -21,8 +41,10 @@ const SudokuGrid = ({ grid, onCellChange }) => {
               type="text"
               value={cell}
               onChange={(e) => handleChange(rowIndex, colIndex, e)}
-              className="sudoku-cell"
-              maxLength="1" // Limit input to one character
+              onKeyDown={(e) => handleKeyDown(rowIndex, colIndex, e)}
+              className={`sudoku-cell ${errors[rowIndex][colIndex] ? 'error' : ''}`}
+              maxLength="1"
+              ref={(el) => (cellRefs.current[rowIndex * 9 + colIndex] = el)}
             />
           ))}
         </div>

@@ -36,3 +36,68 @@
   border-top: 2px solid #fff;
   border-left: 2px solid #fff;
 }
+
+/* Main container for the Sudoku grid */
+.sudoku-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 40px);
+  grid-template-rows: repeat(9, 40px);
+  gap: 1px;
+  justify-content: center;
+  margin: 20px auto;
+  border: 2px solid #fff;
+  background-color: #222;
+  padding: 5px;
+}
+
+/* Focus style for cells */
+.sudoku-cell:focus {
+  border-color: #fff;
+}
+
+/* Error style for cells */
+.sudoku-cell.error {
+  background-color: #ff4c4c;
+}
+
+.sudoku-grid > .sudoku-cell:nth-child(27n+1) {
+  border-top: 2px solid #fff;
+}
+
+.sudoku-grid > .sudoku-cell:nth-child(27n) {
+  border-bottom: 2px solid #fff;
+}
+
+.error-message {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ff4c4c;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  z-index: 1000;
+  animation: fadeout 3s forwards; /* Apply the fadeout animation */
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Adjust the gap between buttons */
+  margin-top: 20px;
+}
