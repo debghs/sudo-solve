@@ -32,17 +32,25 @@ const SudokuSolver = () => {
     setErrorMessage(''); // Clear error message on solve
   };
 
+  const handleReset = () => {
+    setGrid(Array(9).fill().map(() => Array(9).fill('')));
+    setErrors(Array(9).fill().map(() => Array(9).fill(false)));
+    setErrorMessage('');
+  };
+
   const handleCapture = () => {
     // Placeholder for ML integration to capture and read the Sudoku grid
   };
+
   return (
     <div className="sudoku-solver">
       {errorMessage && <div className="error-message">{errorMessage}</div>}
       <SudokuGrid grid={grid} onCellChange={handleCellChange} errors={errors} />
       <div className="button-container">
-        <CameraInput onCapture={handleCapture} />
         <button onClick={handleSolve}>Solve Sudoku</button>
-      </div>
+        <button onClick={handleReset}>Reset</button>
+        <CameraInput onCapture={handleCapture} />
+        </div>
     </div>
   );
 };
